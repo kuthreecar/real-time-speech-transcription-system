@@ -14,7 +14,7 @@ This project is a web application that transcribes speech in real time using a b
 ## Tech Stack
 - **Frontend**: React, WebSockets
 - **Backend**: FastAPI, Whisper STT, WebSockets
-- **Database**: PostgreSQL (Optional for storing chat logs)
+- **Database**: Mongodb
 - **Deployment**: Docker, Kubernetes
 
 ## Setup Instructions
@@ -57,23 +57,40 @@ Ensure you have the following installed:
 1. Build and run the backend:
    ```sh
    docker build -t backend-image .
-   docker run -p 8000:8000 backend-image
    ```
 2. Build and run the frontend:
    ```sh
    docker build -t frontend-image .
-   docker run -p 3000:3000 --name rtsts-frontend frontend-image
+   ```
+3. Run docker compose up
+   ```sh
+   docker-compose up
    ```
 
 ### Kubernetes Deployment
-1. Deploy the backend:
+
+1. Navigate to the `kubernetes/manifests/` directory:
    ```sh
-   kubectl apply -f backend.yaml
-   ```
-2. Deploy the frontend:
+   cd kubernetes/manifests/
+
+2. Run the following commands to deploy your services:
    ```sh
-   kubectl apply -f frontend.yaml
+   kubectl apply -f .
    ```
+   
+3. Verify Deployments
+   ```sh
+   kubectl get pods
+   kubectl get svc
+   ```
+
+4. Expose Frontend**
+   If using Minikube:
+   ```sh
+   minikube service frontend --url
+   ```
+
+Your application should now be running in Kubernetes! 🚀
 
 ### Testing
 - Open the frontend in a browser and click **Start Recording** to begin speech transcription.
@@ -81,7 +98,7 @@ Ensure you have the following installed:
 - Stop recording to end the session.
 
 ## Screenshots
-(Add screenshots of the UI here)
+![Screenshot](./readme/screenshots.png)
 
 ## Challenges & Considerations
 - **Latency**: WebSockets reduce latency compared to HTTP polling.
