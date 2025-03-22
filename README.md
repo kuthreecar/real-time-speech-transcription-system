@@ -98,7 +98,7 @@ Your application should now be running in Kubernetes! 🚀
 - Stop recording to end the session.
 
 ## Screenshots
-![Screenshot](./readme/screenshots.png)
+![Screenshot](/readme/screenshot.png)
 
 ## Challenges & Considerations
 - **Latency**: WebSockets reduce latency compared to HTTP polling.
